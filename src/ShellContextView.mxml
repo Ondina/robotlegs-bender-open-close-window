@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   xmlns:components="yourdomain.shell.views.components.*"
+					   width="990"
+					   height="600"
+					   preinitialize="preinitializeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import yourdomain.shell.configs.ShellContext;
+			
+			import mx.events.FlexEvent;
+			//============================================================================
+			// compiler arguments when linking against the rl source:
+			// -keep-as3-metadata+=Inject
+			// -keep-as3-metadata+=PostConstruct
+			// don't forget to add the Flex Modules ModuleAView, ModuleBView and ModuleCView
+			// in FlashBuilder go to Project->Properties->Flex Modules-> add
+			//============================================================================
+			
+			//============================================================================
+			// create the Robotlegs Context
+			//============================================================================
+			private var _robotlegsContext:ShellContext;
+			
+			private function preinitializeHandler(event:FlexEvent):void
+			{
+				_robotlegsContext = new ShellContext(this);
+			}
+		]]>
+	</fx:Script>
+	<components:WindowOpenerView/>
+</s:WindowedApplication>

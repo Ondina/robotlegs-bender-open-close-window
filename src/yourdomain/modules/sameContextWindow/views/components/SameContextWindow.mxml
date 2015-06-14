@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Window xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:components="modulesAndPopups.modules.windows.components.*"
+		  width="424"
+		  height="280"
+		  title="MAIN CONTEXT WINDOW"
+		  close="window_closeHandler(event)">
+
+	<fx:Script>
+		<![CDATA[
+			import yourdomain.commons.controllers.events.SparkWindowEvent;
+
+			public function cleanUp():void
+			{
+				//remove all event listeners and subcomponents
+				removeEventListener(Event.CLOSE, window_closeHandler);
+
+				closeWindowButton.removeEventListener(MouseEvent.CLICK, closeWindowButton_clickHandler);
+
+				removeAllElements();
+			}
+
+			protected function closeWindowButton_clickHandler(event:MouseEvent):void
+			{
+				close();
+			}
+
+			protected function window_closeHandler(event:Event):void
+			{
+				if (stage)
+					this.dispatchEvent(new Event(Event.REMOVED_FROM_STAGE));
+				cleanUp()
+			}
+		]]>
+	</fx:Script>
+	<s:Button id="closeWindowButton"
+			  x="10"
+			  y="10"
+			  label="close me"
+			  click="closeWindowButton_clickHandler(event)"/>
+</s:Window>

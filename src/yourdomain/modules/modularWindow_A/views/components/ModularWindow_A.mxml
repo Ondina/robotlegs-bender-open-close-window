@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Window xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:ns="yourdomain.modules.modularWindow_A.views.components.*"
+		  width="400"
+		  height="200"
+		  title="MODULAR WINDOW A"
+		  closing="window_closingHandler(event)"
+		  preinitialize="preinitializeHandler(event)"
+		  creationComplete="creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+
+			import yourdomain.modules.modularWindow_A.configs.ModularWindowContext_A;
+
+			//============================================================================
+			// create the Robotlegs Context
+			//============================================================================
+			private var _windowContext:ModularWindowContext_A;
+
+			private function preinitializeHandler(event:FlexEvent):void
+			{
+				removeEventListener(FlexEvent.PREINITIALIZE, preinitializeHandler);
+
+				_windowContext = new ModularWindowContext_A(this);
+			}
+
+			//============================================================================
+			// add an event listener for the Spark Button
+			//============================================================================
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				removeEventListener(FlexEvent.CREATION_COMPLETE, creationCompleteHandler);
+				closeWindowButton.addEventListener(MouseEvent.CLICK, closeWindowButton_clickHandler);
+			}
+
+			//============================================================================
+			// remove all event listeners and subcomponents
+			//============================================================================
+			public function cleanUp():void
+			{
+				closeWindowButton.removeEventListener(MouseEvent.CLICK, closeWindowButton_clickHandler);
+				removeAllElements();
+			}
+
+			//============================================================================
+			// close the Window progranmatically
+			//============================================================================
+			protected function closeWindowButton_clickHandler(event:MouseEvent):void
+			{
+				close();
+			}
+
+			//============================================================================
+			// Window's Event.CLOSING handler
+			//============================================================================
+			protected function window_closingHandler(event:Event):void
+			{
+				cleanUp();
+			}
+		]]>
+	</fx:Script>
+	<s:Button id="closeWindowButton"
+			  x="10"
+			  y="10"
+			  label="close"/>
+</s:Window>
