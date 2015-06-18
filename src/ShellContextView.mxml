@@ -3,14 +3,19 @@
 					   xmlns:s="library://ns.adobe.com/flex/spark"
 					   xmlns:mx="library://ns.adobe.com/flex/mx"
 					   xmlns:components="yourdomain.shell.views.components.*"
-					   width="990"
-					   height="600"
+					   width="680"
+					   height="328"
+					   title="ROBOTLEGS 2 - SPARK WINDOWS - OPEN AND CLOSE"
+					   closing="onExitApplication(event)"
 					   preinitialize="preinitializeHandler(event)">
 	<fx:Script>
 		<![CDATA[
-			import yourdomain.shell.configs.ShellContext;
-			
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
 			import mx.events.FlexEvent;
+
+			import yourdomain.commons.controllers.events.SparkWindowEvent;
+			import yourdomain.shell.configs.ShellContext;
 			//============================================================================
 			// compiler arguments when linking against the rl source:
 			// -keep-as3-metadata+=Inject
@@ -18,17 +23,52 @@
 			// don't forget to add the Flex Modules ModuleAView, ModuleBView and ModuleCView
 			// in FlashBuilder go to Project->Properties->Flex Modules-> add
 			//============================================================================
-			
+
 			//============================================================================
 			// create the Robotlegs Context
 			//============================================================================
 			private var _robotlegsContext:ShellContext;
-			
+
 			private function preinitializeHandler(event:FlexEvent):void
 			{
 				_robotlegsContext = new ShellContext(this);
 			}
+
+			//============================================================================
+			// ON EXIT APPLICATION
+			//============================================================================
+			protected function onExitApplication(event:Event):void
+			{
+				event.preventDefault();
+				Alert.buttonWidth = 100;
+				Alert.buttonHeight = 35;
+				var alert:Alert = Alert.show("Exit Application?", "Please don't go!", Alert.YES | Alert.NO, null, onExitApplicationConfirmed);
+				alert.height = 200;
+				alert.width = 300;
+			}
+
+			//============================================================================
+			// ON EXIT APPLICATION CONFIRMED
+			//============================================================================
+			protected function onExitApplicationConfirmed(event:CloseEvent):void
+			{
+				if (event.detail == 1)
+					exit();
+			}
+
+			protected function closeAllWindowsButton_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_ALL_WINDOWS));
+			}
 		]]>
 	</fx:Script>
-	<components:WindowOpenerView/>
+	<components:ShellWindowOpenerView x="15"
+									  y="36"/>
+	<components:ModularWindowOpenerView x="356"
+										y="36"/>
+	<s:Button id="closeAllWindowsButton"
+			  x="253"
+			  y="267"
+			  label="close all mediated windows"
+			  click="closeAllWindowsButton_clickHandler(event)"/>
 </s:WindowedApplication>

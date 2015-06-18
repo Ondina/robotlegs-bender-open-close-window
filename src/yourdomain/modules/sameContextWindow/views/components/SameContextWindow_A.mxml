@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Window xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:components="modulesAndPopups.modules.windows.components.*"
+		  width="370"
+		  height="160"
+		  close="window_closeHandler(event)"
+		  title="SHELL CONTEXT WINDOW A">
+
+	<fx:Script>
+		<![CDATA[
+			protected function closeWindowButton_clickHandler(event:MouseEvent):void
+			{
+				close();
+			}
+
+			protected function window_closeHandler(event:Event):void
+			{
+				cleanUp();
+				if (stage)
+					dispatchEvent(new Event(Event.REMOVED_FROM_STAGE));
+			}
+
+			public function cleanUp():void
+			{
+				//remove all event listeners and subcomponents
+				removeEventListener(Event.CLOSE, window_closeHandler);
+
+				closeWindowButton.removeEventListener(MouseEvent.CLICK, closeWindowButton_clickHandler);
+				removeAllElements();
+			}
+		]]>
+	</fx:Script>
+	<s:Button id="closeWindowButton"
+			  x="10"
+			  y="10"
+			  label="close A"
+			  click="closeWindowButton_clickHandler(event)"
+			  chromeColor="#b186b2"/>
+</s:Window>

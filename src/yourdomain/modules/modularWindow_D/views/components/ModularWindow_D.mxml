@@ -6,26 +6,25 @@
 		  width="260"
 		  height="260"
 		  close="window_closeHandler(event)"
-		  closing="window_closingHandler(event)"
 		  creationComplete="creationCompleteHandler(event)"
 		  preinitialize="preinitializeHandler(event)"
-		  title="MODULAR WINDOW B">
+		  title="MODULAR WINDOW D">
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
 
-			import yourdomain.modules.modularWindow_B.configs.ModularWindowContext_B;
+			import yourdomain.modules.modularWindow_D.configs.ModularWindowContext_D;
 
 			//============================================================================
 			// create the Robotlegs Context
 			//============================================================================
-			private var _windowContext:ModularWindowContext_B;
+			private var _windowContext:ModularWindowContext_D;
 
 			private function preinitializeHandler(event:FlexEvent):void
 			{
 				removeEventListener(FlexEvent.PREINITIALIZE, preinitializeHandler);
 
-				_windowContext = new ModularWindowContext_B(this);
+				_windowContext = new ModularWindowContext_D(this);
 			}
 
 			//============================================================================
@@ -38,15 +37,6 @@
 			}
 
 			//============================================================================
-			// remove all event listeners and subcomponents
-			//============================================================================
-			public function cleanUp():void
-			{
-				closeWindowButton.removeEventListener(MouseEvent.CLICK, closeWindowButton_clickHandler);
-				removeAllElements();
-			}
-
-			//============================================================================
 			// close the window progranmatically
 			//============================================================================
 			protected function closeWindowButton_clickHandler(event:MouseEvent):void
@@ -55,32 +45,25 @@
 			}
 
 			//============================================================================
-			// handler for the Event.CLOSE dispatched after the window has been closed.
-			// 
-			// hack:
-			// dispatch Event.REMOVED_FROM_STAGE to inform Robotlegs that it can remove the
-			// Mediator for this View
-			// 
-			// because when TitleBar's closeButton is clicked the WindowedSystemManager
-			// does NOT remove the window, thus no REMOVED_FROM_STAGE is dispatched
+			// remove all event listeners and subcomponents
 			//============================================================================
-			protected function window_closeHandler(event:Event):void
+			public function cleanUp():void
 			{
-				if (stage)
-				{
-					dispatchEvent(new Event(Event.REMOVED_FROM_STAGE));
-				}
+				closeWindowButton.removeEventListener(MouseEvent.CLICK, closeWindowButton_clickHandler);
+				removeAllElements();
 			}
 
-			protected function window_closingHandler(event:Event):void
+			protected function window_closeHandler(event:Event):void
 			{
 				cleanUp();
+				if (stage)
+					owner.removeChild(this);//owner=WindowedSystemManager
 			}
 		]]>
 	</fx:Script>
 	<s:Button id="closeWindowButton"
 			  x="10"
 			  y="10"
-			  label="close modular B"
-			  chromeColor="#a19eb1"/>
+			  label="close modular D"
+			  chromeColor="#e26b58"/>
 </s:Window>

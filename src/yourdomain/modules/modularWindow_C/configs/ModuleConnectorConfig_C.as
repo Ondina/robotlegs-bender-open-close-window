@@ -1,11 +1,11 @@
-package yourdomain.modules.modularWindow_B.configs
+package yourdomain.modules.modularWindow_C.configs
 {
 	import robotlegs.bender.extensions.modularity.api.IModuleConnector;
 	import robotlegs.bender.framework.api.IConfig;
 
 	import yourdomain.commons.controllers.events.SparkWindowEvent;
 
-	public class ModuleConnectorConfig_B implements IConfig
+	public class ModuleConnectorConfig_C implements IConfig
 	{
 		[Inject]
 		public var moduleConnector:IModuleConnector;
@@ -15,8 +15,8 @@ package yourdomain.modules.modularWindow_B.configs
 			//============================================================================
 			// MODULE LISTENS onDefaultChannel for Shell's event
 			//============================================================================
-			moduleConnector.onChannel("MODULE_B")
-				.receiveEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_B)
+			moduleConnector.onChannel("MODULE_C")
+				.receiveEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_C)
 				.receiveEvent(SparkWindowEvent.CLOSE_ALL_WINDOWS);
 		}
 	}

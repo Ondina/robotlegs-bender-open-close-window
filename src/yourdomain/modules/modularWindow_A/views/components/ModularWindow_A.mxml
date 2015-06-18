@@ -3,12 +3,12 @@
 		  xmlns:s="library://ns.adobe.com/flex/spark"
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  xmlns:ns="yourdomain.modules.modularWindow_A.views.components.*"
-		  width="400"
-		  height="200"
-		  title="MODULAR WINDOW A"
+		  width="260"
+		  height="260"
 		  closing="window_closingHandler(event)"
+		  creationComplete="creationCompleteHandler(event)"
 		  preinitialize="preinitializeHandler(event)"
-		  creationComplete="creationCompleteHandler(event)">
+		  title="MODULAR WINDOW A">
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
@@ -65,5 +65,6 @@
 	<s:Button id="closeWindowButton"
 			  x="10"
 			  y="10"
-			  label="close"/>
+			  label="close modular A"
+			  chromeColor="#7A73D9"/>
 </s:Window>

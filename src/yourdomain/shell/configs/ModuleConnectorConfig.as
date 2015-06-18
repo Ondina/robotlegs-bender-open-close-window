@@ -16,10 +16,20 @@ package yourdomain.shell.configs
 			// SHELL TO MODULES CHANNEL
 			//============================================================================
 			moduleConnector.onChannel("MODULE_A")
-				.relayEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_A);
+				.relayEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_A)
+				.relayEvent(SparkWindowEvent.CLOSE_ALL_WINDOWS);
 
 			moduleConnector.onChannel("MODULE_B")
-				.relayEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_B);
+				.relayEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_B)
+				.relayEvent(SparkWindowEvent.CLOSE_ALL_WINDOWS);
+
+			moduleConnector.onChannel("MODULE_C")
+				.relayEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_C)
+				.relayEvent(SparkWindowEvent.CLOSE_ALL_WINDOWS);
+
+			moduleConnector.onChannel("MODULE_D")
+				.relayEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_D)
+				.relayEvent(SparkWindowEvent.CLOSE_ALL_WINDOWS);
 		}
 	}
 }

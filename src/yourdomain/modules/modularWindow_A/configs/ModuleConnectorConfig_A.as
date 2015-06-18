@@ -16,8 +16,8 @@ package yourdomain.modules.modularWindow_A.configs
 			// MODULE LISTENS onDefaultChannel for Shell's event
 			//============================================================================
 			moduleConnector.onChannel("MODULE_A")
-				.receiveEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_A);
-
+				.receiveEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_A)
+				.receiveEvent(SparkWindowEvent.CLOSE_ALL_WINDOWS);
 		}
 	}
 }

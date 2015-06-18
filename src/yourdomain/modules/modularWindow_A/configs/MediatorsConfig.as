@@ -2,7 +2,7 @@ package yourdomain.modules.modularWindow_A.configs
 {
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.framework.api.IConfig;
-	
+
 	import yourdomain.modules.modularWindow_A.views.components.ModularWindow_A;
 	import yourdomain.modules.modularWindow_A.views.mediators.ModularWindowMediator_A;
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="300"
+		 height="204">
+	<fx:Script>
+		<![CDATA[
+			import yourdomain.commons.controllers.events.SparkWindowEvent;
+
+			//============================================================================
+			// OPEN AND CLOSE A MEDIATED WINDOW THAT HAS ITS OWN CONTEXT
+			//============================================================================
+			//============================================================================
+			// VARIANT A - ModularWindow_A
+			//============================================================================
+			protected function onOpenModularWindow_A(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.OPEN_MODULAR_WINDOW_A));
+			}
+
+			protected function onCloseModularWindow_A(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_A));
+			}
+
+			//============================================================================
+			// VARIANT B - ModularWindow_B
+			//============================================================================
+			protected function onOpenModularWindow_B(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.OPEN_MODULAR_WINDOW_B));
+			}
+
+			protected function onCloseModularWindow_B(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_B));
+			}
+
+			//============================================================================
+			// VARIANT C - ModularWindow_C
+			//============================================================================
+			protected function onOpenModularWindow_C(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.OPEN_MODULAR_WINDOW_C));
+			}
+
+			protected function onCloseModularWindow_C(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_C));
+			}
+
+			//============================================================================
+			// VARIANT D - ModularWindow_D
+			//============================================================================
+			protected function onOpenModularWindow_D(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.OPEN_MODULAR_WINDOW_D));
+			}
+
+			protected function onCloseModularWindow_D(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_MODULAR_WINDOW_D));
+			}
+		]]>
+	</fx:Script>
+	<s:Label x="10"
+			 y="10"
+			 text="MODULAR WINDOWS"/>
+	<!--MEDIATED WINDOW WITH ITS OWN CONTEXT VARIANT A-->
+	<s:HGroup x="10"
+			  y="37"
+			  verticalAlign="baseline">
+		<s:Label fontWeight="bold"
+				 text="Window with Context A"/>
+		<s:Button id="openModularWindowButton"
+				  label="open"
+				  click="onOpenModularWindow_A(event)"/>
+		<s:Button id="closeModularWindowButton"
+				  label="close"
+				  click="onCloseModularWindow_A(event)"/>
+	</s:HGroup>
+	<!--MEDIATED WINDOW WITH ITS OWN CONTEXT VARIANT B-->
+	<s:HGroup x="10"
+			  y="80"
+			  verticalAlign="baseline">
+		<s:Label fontWeight="bold"
+				 text="Window with Context B"/>
+		<s:Button id="openModularWindowButton_B"
+				  label="open"
+				  click="onOpenModularWindow_B(event)"/>
+		<s:Button id="closeModularWindowButton_B"
+				  label="close"
+				  click="onCloseModularWindow_B(event)"/>
+	</s:HGroup>
+	<!--MEDIATED WINDOW WITH ITS OWN CONTEXT VARIANT C-->
+	<s:HGroup x="10"
+			  y="122"
+			  verticalAlign="baseline">
+		<s:Label fontWeight="bold"
+				 text="Window with Context C"/>
+		<s:Button id="openModularWindowButton_C"
+				  label="open"
+				  click="onOpenModularWindow_C(event)"/>
+		<s:Button id="closeModularWindowButton_C"
+				  label="close"
+				  click="onCloseModularWindow_C(event)"/>
+	</s:HGroup>
+	<!--MEDIATED WINDOW WITH ITS OWN CONTEXT VARIANT D-->
+	<s:HGroup x="10"
+			  y="164"
+			  verticalAlign="baseline">
+		<s:Label fontWeight="bold"
+				 text="Window with Context D"/>
+		<s:Button id="openModularWindowButton_D"
+				  label="open"
+				  click="onOpenModularWindow_D(event)"/>
+		<s:Button id="closeModularWindowButton_D"
+				  label="close"
+				  click="onCloseModularWindow_D(event)"/>
+	</s:HGroup>
+</s:Group>

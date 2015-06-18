@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="292"
+		 height="160">
+	<fx:Script>
+		<![CDATA[
+			import spark.components.Window;
+			
+			import yourdomain.commons.controllers.events.SparkWindowEvent;
+
+			//============================================================================
+			// OPEN AND CLOSE A NON MEDIATED SPARK WINDOW
+			//============================================================================
+			protected var simpleSparkWindow:Window;
+
+			protected function onOpenSimpleWindow(event:MouseEvent):void
+			{
+				if (simpleSparkWindow)
+					return;
+				
+				simpleSparkWindow = new Window();
+				simpleSparkWindow.title = "SIMPLE WINDOW";
+				simpleSparkWindow.width = 300;
+				simpleSparkWindow.height = 100;
+				
+				simpleSparkWindow.addEventListener(Event.REMOVED_FROM_STAGE, onSimpleWindowRemovedFromStage);
+				simpleSparkWindow.addEventListener(Event.CLOSING, onSimpleWindowClosing);
+				
+				simpleSparkWindow.open();
+			}
+			//============================================================================
+			// THE WINDOW DISPATCHES REMOVED_FROM_STAGE ONLY WHEN CLOSED PROGRAMMATICALLY
+			//============================================================================
+			protected function onSimpleWindowRemovedFromStage(event:Event):void
+			{
+				trace("WindowOpenerView.onSimpleWindowRemovedFromStage(event)");
+			}
+			//============================================================================
+			// CLOSING THE WINDOW PROGRAMMATICALLY
+			//============================================================================
+			protected function onCloseSimpleWindow(event:MouseEvent):void
+			{
+				if (!simpleSparkWindow)
+					return;
+				simpleSparkWindow.close();
+			}
+
+			protected function onSimpleWindowClosing(event:Event):void
+			{
+				simpleSparkWindow = null;
+			}
+
+			//============================================================================
+			// OPEN AND CLOSE A MEDIATED WINDOW IN THIS CONTEXT - VARIANT A
+			// THE MEDIATOR OF THIS VIEW, ShellWindowOpenerMediator, IS LISTENING FOR THESE EVENTS:
+			//============================================================================
+			protected function onOpenSameContextWindow_A(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.OPEN_SAME_CONTEXT_WINDOW_A));
+			}
+
+			protected function onCloseSameContextWindow_A(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_SAME_CONTEXT_WINDOW_A));
+			}
+
+			//============================================================================
+			// OPEN AND CLOSE A MEDIATED WINDOW IN THIS CONTEXT - VARIANT B
+			//============================================================================
+			protected function onOpenSameContextWindow_B(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.OPEN_SAME_CONTEXT_WINDOW_B));
+			}
+
+			protected function onCloseSameContextWindow_B(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_SAME_CONTEXT_WINDOW_B));
+			}
+		]]>
+	</fx:Script>
+	<s:Label x="10"
+			 y="10"
+			 text="SHELL"/>
+	<!--SIMPLE WINDOW-->
+	<s:HGroup x="10"
+			  y="40"
+			  verticalAlign="middle">
+		<s:Label fontWeight="bold"
+				 text="simple Window"/>
+		<s:Button id="openSimpleWindowButton"
+				  label="open"
+				  click="onOpenSimpleWindow(event)"/>
+		<s:Button id="closeSimpleWindowButton"
+				  label="close"
+				  click="onCloseSimpleWindow(event)"/>
+	</s:HGroup>
+	<!--MEDIATED WINDOW IN THE MAIN CONTEXT VARIANT A-->
+	<s:HGroup x="10"
+			  y="81"
+			  verticalAlign="middle">
+		<s:Label fontWeight="bold"
+				 text="mediated Window A"/>
+		<s:Button id="openSameContextWindowButton_A"
+				  label="open"
+				  click="onOpenSameContextWindow_A(event)"/>
+		<s:Button id="closeSameContextWindowButton_A"
+				  label="close"
+				  click="onCloseSameContextWindow_A(event)"/>
+	</s:HGroup>
+	<!--MEDIATED WINDOW IN THE MAIN CONTEXT VARIANT B-->
+	<s:HGroup x="10"
+			  y="119"
+			  verticalAlign="middle">
+		<s:Label fontWeight="bold"
+				 text="mediated Window B"/>
+		<s:Button id="openSameContextWindowButton_B"
+				  label="open"
+				  click="onOpenSameContextWindow_B(event)"/>
+		<s:Button id="closeSameContextWindowButton_B"
+				  label="close"
+				  click="onCloseSameContextWindow_B(event)"/>
+	</s:HGroup>
+</s:Group>

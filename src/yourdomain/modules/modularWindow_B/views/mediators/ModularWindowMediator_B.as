@@ -12,11 +12,12 @@ package yourdomain.modules.modularWindow_B.views.mediators
 
 		override public function initialize():void
 		{
-			//listener for the event dispatched by WindowOpenerMediator from the parent Context
-			addContextListener(SparkWindowEvent.CLOSE_MODULAR_WINDOW_B, onCloseWindowFromParent, SparkWindowEvent);
+			//listener for the event dispatched by ModularWindowOpenerMediator from the parent Context
+			addContextListener(SparkWindowEvent.CLOSE_MODULAR_WINDOW_B, onCloseWindowFromParentContext, SparkWindowEvent);
+			addContextListener(SparkWindowEvent.CLOSE_ALL_WINDOWS, onCloseWindowFromParentContext, SparkWindowEvent);
 		}
 
-		private function onCloseWindowFromParent(event:SparkWindowEvent):void
+		private function onCloseWindowFromParentContext(event:SparkWindowEvent):void
 		{
 			view.close();
 		}

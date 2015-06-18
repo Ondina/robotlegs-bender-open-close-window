@@ -1,7 +1,7 @@
 package yourdomain.modules.modularWindow_A.configs
 {
 	import flash.display.DisplayObjectContainer;
-
+	
 	import robotlegs.bender.bundles.mvcs.MVCSBundle;
 	import robotlegs.bender.extensions.contextView.ContextView;
 	import robotlegs.bender.framework.api.IContext;
@@ -22,6 +22,5 @@ package yourdomain.modules.modularWindow_A.configs
 				.configure(ModuleConnectorConfig_A, MediatorsConfig)
 				.configure(new ContextView(view));
 		}
-
 	}
 }
