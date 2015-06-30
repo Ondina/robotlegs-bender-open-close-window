@@ -1,5 +1,6 @@
 package yourdomain.shell.configs
 {
+	import robotlegs.bender.extensions.matching.TypeMatcher;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.extensions.viewManager.api.IViewManager;
 	import robotlegs.bender.framework.api.IConfig;
@@ -7,6 +8,12 @@ package yourdomain.shell.configs
 
 	import yourdomain.commons.views.components.SomeSimpleView;
 	import yourdomain.commons.views.mediators.SomeSimpleMediator;
+	import yourdomain.modules.extendedWindows.views.components.base.api.IBaseWindowComponent;
+	import yourdomain.modules.extendedWindows.views.components.base.api.IDrawRectangles;
+	import yourdomain.modules.extendedWindows.views.components.DerivedWindow_A;
+	import yourdomain.modules.extendedWindows.views.components.DerivedWindow_B;
+	import yourdomain.modules.extendedWindows.views.mediators.DerivedWindowMediator_A;
+	import yourdomain.modules.extendedWindows.views.mediators.DerivedWindowMediator_B;
 	import yourdomain.modules.sameContextWindow.views.components.SameContextWindow_A;
 	import yourdomain.modules.sameContextWindow.views.components.SameContextWindow_B;
 	import yourdomain.modules.sameContextWindow.views.mediators.SameContextWindowMediator_A;
@@ -29,6 +36,17 @@ package yourdomain.shell.configs
 		public function configure():void
 		{
 			mediatorMap.map(SomeSimpleView).toMediator(SomeSimpleMediator);
+
+			//views extending BaseWindowComponent, mediators extending BaseWindowMediator
+			//DerivedWindow_A implements IBaseWindowComponent
+			mediatorMap.mapMatcher(new TypeMatcher()
+				.allOf(IBaseWindowComponent, DerivedWindow_A))
+				.toMediator(DerivedWindowMediator_A);
+			
+			//DerivedWindow_B implements IBaseWindowComponent and IDrawRectangles
+			mediatorMap.mapMatcher(new TypeMatcher()
+				.allOf(IBaseWindowComponent, IDrawRectangles, DerivedWindow_B))
+				.toMediator(DerivedWindowMediator_B);
 
 			mediatorMap.map(SameContextWindow_A).toMediator(SameContextWindowMediator_A);
 			mediatorMap.map(SameContextWindow_B).toMediator(SameContextWindowMediator_B);

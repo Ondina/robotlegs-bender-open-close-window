@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<impl:BaseWindowComponent xmlns:fx="http://ns.adobe.com/mxml/2009"
+						  xmlns:s="library://ns.adobe.com/flex/spark"
+						  xmlns:mx="library://ns.adobe.com/flex/mx"
+						  xmlns:impl="yourdomain.modules.extendedWindows.views.components.base.impl.*"
+						  width="300"
+						  height="300"
+						  title="DERIVED B"
+						  implements="yourdomain.modules.extendedWindows.views.components.base.api.IBaseWindowComponent, yourdomain.modules.extendedWindows.views.components.base.api.IDrawRectangles" xmlns:impl1="yourdomain.modules.extendedWindows.views.components.base.impl.*">
+	<fx:Script>
+		<![CDATA[
+			//============================================================================
+			// THIW VIEW IS IMPLEMENTING AN ADDITIONAL INTERFACE - IDrawRectangles
+			//============================================================================
+			import spark.components.BorderContainer;
+			public function drawRectangles():void
+			{
+				var rectangle:BorderContainer = new BorderContainer();
+				rectangle.x = 10;
+				rectangle.y= 50;
+				addElement(rectangle);
+			}
+		]]>
+	</fx:Script>
+</impl:BaseWindowComponent>

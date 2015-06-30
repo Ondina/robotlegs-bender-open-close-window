@@ -3,11 +3,11 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 width="292"
-		 height="160">
+		 height="222">
 	<fx:Script>
 		<![CDATA[
 			import spark.components.Window;
-			
+
 			import yourdomain.commons.controllers.events.SparkWindowEvent;
 
 			//============================================================================
@@ -19,17 +19,18 @@
 			{
 				if (simpleSparkWindow)
 					return;
-				
+
 				simpleSparkWindow = new Window();
 				simpleSparkWindow.title = "SIMPLE WINDOW";
 				simpleSparkWindow.width = 300;
 				simpleSparkWindow.height = 100;
-				
+
 				simpleSparkWindow.addEventListener(Event.REMOVED_FROM_STAGE, onSimpleWindowRemovedFromStage);
 				simpleSparkWindow.addEventListener(Event.CLOSING, onSimpleWindowClosing);
-				
+
 				simpleSparkWindow.open();
 			}
+
 			//============================================================================
 			// THE WINDOW DISPATCHES REMOVED_FROM_STAGE ONLY WHEN CLOSED PROGRAMMATICALLY
 			//============================================================================
@@ -37,6 +38,7 @@
 			{
 				trace("WindowOpenerView.onSimpleWindowRemovedFromStage(event)");
 			}
+
 			//============================================================================
 			// CLOSING THE WINDOW PROGRAMMATICALLY
 			//============================================================================
@@ -77,6 +79,20 @@
 			protected function onCloseSameContextWindow_B(event:MouseEvent):void
 			{
 				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_SAME_CONTEXT_WINDOW_B));
+			}
+
+			//============================================================================
+			// OPEN AND CLOSE MULTIPLE MEDIATED WINDOW IN THIS CONTEXT
+			// THE WINDOWS AND MEDIATORS ARE EXTENDING A BASE CLASS
+			//============================================================================
+			protected function openExtendedWindows_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.OPEN_ONE_WINDOW));
+			}
+
+			protected function closeExtendedWindows_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new SparkWindowEvent(SparkWindowEvent.CLOSE_ONE_WINDOW));
 			}
 		]]>
 	</fx:Script>
@@ -121,5 +137,17 @@
 		<s:Button id="closeSameContextWindowButton_B"
 				  label="close"
 				  click="onCloseSameContextWindow_B(event)"/>
+	</s:HGroup>
+	<!--WINDOWS EXTENDING A BASE WINDOW-->
+	<s:HGroup x="10"
+			  y="160"
+			  verticalAlign="middle">
+		<s:Label text="2 extended Windows"/>
+		<s:Button id="openExtendedWindows"
+				  label="open"
+				  click="openExtendedWindows_clickHandler(event)"/>
+		<s:Button id="closeExtendedWindows"
+				  label="close"
+				  click="closeExtendedWindows_clickHandler(event)"/>
 	</s:HGroup>
 </s:Group>

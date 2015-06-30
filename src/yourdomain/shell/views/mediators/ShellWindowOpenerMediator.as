@@ -2,9 +2,12 @@ package yourdomain.shell.views.mediators
 {
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	import robotlegs.bender.extensions.viewManager.api.IViewManager;
-	
+
 	import yourdomain.commons.controllers.events.SparkWindowEvent;
 	import yourdomain.commons.views.components.SomeSimpleView;
+	import yourdomain.modules.extendedWindows.views.components.base.api.IBaseWindowComponent;
+	import yourdomain.modules.extendedWindows.views.components.DerivedWindow_A;
+	import yourdomain.modules.extendedWindows.views.components.DerivedWindow_B;
 	import yourdomain.modules.sameContextWindow.views.components.SameContextWindow_A;
 	import yourdomain.modules.sameContextWindow.views.components.SameContextWindow_B;
 	import yourdomain.shell.views.components.ShellWindowOpenerView;
@@ -28,6 +31,11 @@ package yourdomain.shell.views.mediators
 			addViewListener(SparkWindowEvent.OPEN_SAME_CONTEXT_WINDOW_B, onOpenSameContextWindow_B, SparkWindowEvent);
 			//redisptaching view's event; SomeWindowMediator_B will react to it
 			addViewListener(SparkWindowEvent.CLOSE_SAME_CONTEXT_WINDOW_B, dispatch, SparkWindowEvent);
+
+			//open a mediated spark window in this context - VARIANT C
+			// the windows and mediators are extending a base class
+			addViewListener(SparkWindowEvent.OPEN_ONE_WINDOW, onOpenMultipleWindows, SparkWindowEvent);
+			addViewListener(SparkWindowEvent.CLOSE_ONE_WINDOW, dispatch, SparkWindowEvent);
 		}
 
 		//============================================================================
@@ -56,6 +64,20 @@ package yourdomain.shell.views.mediators
 			viewManager.addContainer(someWindow);
 
 			someWindow.open();
+		}
+
+		//============================================================================
+		// OPEN 2 EXTENDED WINDOWS
+		//============================================================================
+		private function onOpenMultipleWindows(event:SparkWindowEvent):void
+		{
+			var derivedWindow_A:DerivedWindow_A = new DerivedWindow_A();
+			viewManager.addContainer(derivedWindow_A);
+			derivedWindow_A.open();
+			
+			var derivedWindow_B:DerivedWindow_B = new DerivedWindow_B();
+			viewManager.addContainer(derivedWindow_B);
+			derivedWindow_B.open();
 		}
 	}
 }

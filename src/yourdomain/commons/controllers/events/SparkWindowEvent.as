@@ -30,6 +30,10 @@ package yourdomain.commons.controllers.events
 		
 		//CLOSE ALL
 		public static const CLOSE_ALL_WINDOWS:String = "closeAllWindows";
+		
+		//
+		public static const OPEN_ONE_WINDOW:String = "openOneWindow";
+		public static const CLOSE_ONE_WINDOW:String = "closeOneWindow";
 
 		public function SparkWindowEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
