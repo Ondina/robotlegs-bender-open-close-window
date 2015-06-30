@@ -20,8 +20,6 @@
 			// compiler arguments when linking against the rl source:
 			// -keep-as3-metadata+=Inject
 			// -keep-as3-metadata+=PostConstruct
-			// don't forget to add the Flex Modules ModuleAView, ModuleBView and ModuleCView
-			// in FlashBuilder go to Project->Properties->Flex Modules-> add
 			//============================================================================
 
 			//============================================================================
@@ -63,9 +61,9 @@
 		]]>
 	</fx:Script>
 	<components:ShellWindowOpenerView x="15"
-									  y="36"/>
+					 y="36"/>
 	<components:ModularWindowOpenerView x="356"
-										y="36"/>
+					y="36"/>
 	<s:Button id="closeAllWindowsButton"
 			  x="253"
 			  y="267"
